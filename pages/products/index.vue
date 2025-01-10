@@ -1,7 +1,12 @@
 <template>
     <div class="translate-y-20 p-10  ">
        <div v-if="isLoading">
-          <h1>Loading.....</h1>
+        <div class="flex flex-wrap gap-8 items-center justify-center">
+           <div v-for="shimmer in 10" >
+              <SkeletonsProductCard/>
+         </div>
+
+        </div>
        </div>
        <div v-else>
         <div class="flex flex-wrap gap-8 items-center justify-center" v-if="products && products?.length" >
