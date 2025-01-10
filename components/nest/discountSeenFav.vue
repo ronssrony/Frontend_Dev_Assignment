@@ -11,11 +11,15 @@
           class="text-black/60"
         ></Icon>
       </button>
-      <button><Icon name="ri:heart-line" class="text-black/60"></Icon></button>
+      <button @click="favStore.addToFav(product)"><Icon name="ri:heart-line" class="text-black/60"></Icon></button>
     </div>
   </div>
 </template>
 
-<script lang="ts" setup></script>
-
+<script setup>
+import { useFavStore } from '~/stores/favourites';
+const {product} = defineProps(['product'])
+const favStore = useFavStore()
+</script>
+ 
 <style></style>

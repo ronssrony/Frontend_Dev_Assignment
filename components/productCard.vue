@@ -10,7 +10,7 @@
         srcset=""
       />
     </NuxtLink>
-    <NestDiscountSeenFav />
+    <NestDiscountSeenFav :product="product" />
     <NuxtLink :to="`/products/${product.id}`"><h1 class="font-medium line-clamp-2 w-full">{{ product.title }}</h1></NuxtLink>
     <NuxtLink :to="`/products/${product.id}`" class="ratting flex items-center justify-start gap-3">
       <div class="stars flex items-center">
@@ -27,13 +27,18 @@
     <NestBestThings />
     <div class="flex justify-between items-center">
       <h1 class="font-bold text-lg">${{ product.price }}</h1>
-      <NestAddToCart />
+      <NestAddToCart :product="product" />
     </div>
   </div>
 </template>
 
 <script setup>
+
+
 const { product } = defineProps(["product"]);
+
+
+
 </script>
 
 <style></style>

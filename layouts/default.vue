@@ -7,8 +7,8 @@
             <ul class=" w-1/3  flex gap-8 justify-end ">
                 <li><NuxtLink to="/">Home</NuxtLink></li>
                 <li><NuxtLink to="/products">Products</NuxtLink></li>
-                <!-- <li><NuxtLink to="/favourites">Favourites</NuxtLink></li>
-                <li><NuxtLink to="/cart">Cart</NuxtLink></li> -->
+                <li><NuxtLink to="/favourites">Favourites {{ favStore.fav.length }}</NuxtLink></li>
+                <li><NuxtLink to="/cart">Cart {{ cartStore.cart.length }}  </NuxtLink></li>
             </ul>
         </nav>
      </header>
@@ -20,7 +20,10 @@
 </template>
 
 <script setup>
-
+import { useCartStore } from '~/stores/cart';
+import { useFavStore } from '~/stores/favourites';
+ const cartStore = useCartStore(); 
+ const favStore = useFavStore()
 </script>
 
 <style  scoped>
