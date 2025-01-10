@@ -43,8 +43,9 @@
        </div>
 </template>
 
-<script lang="ts" setup>
-
+<script  setup>
+          const {product} = defineProps(['product']);  
+          console.log(product)
 </script>
 
 <style>
