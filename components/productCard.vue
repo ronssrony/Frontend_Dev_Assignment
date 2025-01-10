@@ -1,5 +1,5 @@
 <template>
-  <div class="w-52 h-80 relative p-4 shadow-md rounded flex flex-col  justify-between border-2 border-slate-50">
+  <div class="w-60 h-96 relative p-4 shadow-sm rounded flex flex-col  justify-between border-2 border-black-50">
            <picture class="w-full h-1/2 relative  ">
                <img class="rounded-md object-contain absolute w-full h-full " :src="product.image" alt="" srcset="">
             </picture>
@@ -14,19 +14,9 @@
             <div class="ratting flex items-center justify-start gap-3">
               <div class="stars flex items-center ">
                   
-                <div v-for="star in 5">
-                      <div v-if="product.rating.rate>=star">
-                        <Icon name="material-symbols:star-rounded" color="yellow" class="text-yellow-500"></Icon>  
-                      </div>
-                      <div v-else-if="Math.round(product.rating.rate)>product.rating.rate && Math.round(product.rating.rate)>=star ">
-                        <Icon name="material-symbols:star-half-rounded" color="yellow" class="text-yellow-500"></Icon>      
-                      </div>
-                      <div v-else>
-                        <Icon name="material-symbols:star-outline-rounded" color="yellow" class="text-yellow-500"></Icon> 
-                      </div>
-                </div>
+                <NestDynamicStars :rate="product.rating.rate"/>
              
-                  <span class="text-[12px] font-bold text-black/50"> {{product.rating.rate }} </span>
+                  <span class="text-[12px] font-bold text-black/50 pl-1"> {{product.rating.rate }} </span>
               </div>
               <p class="text-[12px] font-bold text-black/50">({{product.rating.count}})</p>
             </div>
@@ -41,12 +31,9 @@
              </span>
             </div>
 
-          <div class="flex justify-between">
-             <h1 class="font-bold ">${{product.price}}</h1>
-            <button class=" bg-blue-600 text-white text-sm  px-2 py-1 rounded-md flex gap-1 items-center">
-              <Icon name="ic:outline-add-shopping-cart" color="white" ></Icon>
-              Add to cart
-            </button>
+          <div class="flex justify-between items-center">
+             <h1 class="font-bold text-lg ">${{product.price}}</h1>
+            <NestAddToCart/>
           </div>
        </div>
 </template>
