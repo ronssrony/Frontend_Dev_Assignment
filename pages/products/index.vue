@@ -2,7 +2,7 @@
     <div class="translate-y-20 p-10  ">
        <div v-if="isLoading">
         <div class="flex flex-wrap gap-8 items-center justify-center">
-           <div v-for="shimmer in 10" >
+           <div v-for="shimmer in 12" >
               <SkeletonsProductCard/>
          </div>
 
