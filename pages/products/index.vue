@@ -1,24 +1,33 @@
 <template>
     <div class="translate-y-20 p-10  ">
-       <div v-if="loadingState">
+       <div v-if="isLoading">
           <h1>Loading.....</h1>
        </div>
        <div v-else>
-        <div v-for="item in products" :key="item.id">
+        <div class="flex flex-wrap gap-8 items-center justify-center" v-if="products && products?.length" >
+          <div  v-for="item in products" :key="item.id">
           <ProductCard :product="item"  />     
+        </div>
         </div>
        </div>
     </div>
 </template>
 
 <script setup >
-   const loadingState = ref(false)
-   const {data:products ,isLoading , error} = await useApi('https://fakestoreapi.com/products')  ; 
+  const isLoading = ref(false)
+  const products = ref([])
+  const init = async()=>{
+    isLoading.value = true;
+     const {data ,error} = await useApi('https://fakestoreapi.com/products')  ;
+    if(data && data.value.length>0) {isLoading.value = false ; products.value = data.value}
+    else {
+      isLoading.value = false ; 
+      console.log(error)
+    }
+  }
+  init(); 
+    
 
-   watch(isLoading , ()=>{
-         loadingState.value = isLoading.value
-         console.log(loadingState.value)
-   })
 
 </script>
 

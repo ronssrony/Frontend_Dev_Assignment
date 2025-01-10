@@ -13,9 +13,12 @@
 </template>
 
 <script setup>
-   import initializeSlider from "~/utils/sliderHelper.js"
+   import {initializeSlider} from "~/utils/sliderHelper.js"
     onMounted(()=>{
         initializeSlider(); 
+    })
+    onUnmounted(()=>{
+        stopSlider() ;
     })
 </script>
 

@@ -7,8 +7,8 @@
             <ul class=" w-1/3  flex gap-8 justify-end ">
                 <li><NuxtLink to="/">Home</NuxtLink></li>
                 <li><NuxtLink to="/products">Products</NuxtLink></li>
-                <li><NuxtLink to="/favourites">Favourites</NuxtLink></li>
-                <li><NuxtLink to="/cart">Cart</NuxtLink></li>
+                <!-- <li><NuxtLink to="/favourites">Favourites</NuxtLink></li>
+                <li><NuxtLink to="/cart">Cart</NuxtLink></li> -->
             </ul>
         </nav>
      </header>

@@ -1,4 +1,5 @@
-export default function initializeSlider(){
+var showtime = null ;
+export const initializeSlider =  function (){
           
 const slider = document.querySelector(".slider");
 
@@ -19,7 +20,7 @@ window.onload = () =>{
 
 let position = pictures[1].offsetTop;
 
-let showtime=setInterval(function () {
+showtime=setInterval(function () {
         if (index === totalpicture) {
           window.scrollBy({
             top: -maxdown,
@@ -41,4 +42,8 @@ let showtime=setInterval(function () {
   document.addEventListener("wheel", function (item) {
     clearInterval(showtime);
   })
+}
+
+export const stopSlider = function (){
+        clearInterval(showtime) ;
 }
