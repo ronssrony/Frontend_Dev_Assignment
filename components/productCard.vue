@@ -14,7 +14,17 @@
             <div class="ratting flex items-center justify-start gap-3">
               <div class="stars flex items-center ">
                   
-            
+                <div v-for="star in 5">
+                      <div v-if="product.rating.rate>=star">
+                        <Icon name="material-symbols:star-rounded" color="yellow" class="text-yellow-500"></Icon>  
+                      </div>
+                      <div v-else-if="Math.round(product.rating.rate)>product.rating.rate && Math.round(product.rating.rate)>=star ">
+                        <Icon name="material-symbols:star-half-rounded" color="yellow" class="text-yellow-500"></Icon>      
+                      </div>
+                      <div v-else>
+                        <Icon name="material-symbols:star-outline-rounded" color="yellow" class="text-yellow-500"></Icon> 
+                      </div>
+                </div>
              
                   <span class="text-[12px] font-bold text-black/50"> {{product.rating.rate }} </span>
               </div>
