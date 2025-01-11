@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-xl text-black/80 p-5">Your Favourite Items</h1>
+    <h1 class="text-xl text-black/80 p-5">Your Cart</h1>
         <div v-if="cartStore.cart.length<=0">
    <div  class="flex justify-center md:text-4xl text-3xl font-medium items-center text-black/30 pt-5 ">
       <h1>The cart is empty</h1>
@@ -77,7 +77,7 @@ import { useCartStore } from '~/stores/cart';
  });
       savings.value = originalPrice.value*(5/100); 
       tax.value = originalPrice.value*(10/100)
-      total.value = originalPrice.value +savings.value+tax.value+storePickup.value ;
+      total.value = originalPrice.value -savings.value+tax.value+storePickup.value ;
  }
 
  onMounted(()=>{
@@ -91,7 +91,7 @@ import { useCartStore } from '~/stores/cart';
  });
    savings.value = originalPrice.value*(5/100); 
       tax.value = originalPrice.value*(10/100)
-      total.value = originalPrice.value +savings.value+tax.value+storePickup.value ;
+      total.value = originalPrice.value -savings.value+tax.value+storePickup.value ;
 }
 
 </script>

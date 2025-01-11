@@ -1,5 +1,10 @@
 <template>
-  <div class="translate-y-4">
+  <div v-if="isLoading">
+     <SkeletonsProductDetail/>
+  </div>
+  <div v-else>
+    <div v-if="product">
+     <div class="translate-y-4">
   <div class="flex max-md:flex-col  justify-center items-center gap-10 py-4  ">
        <div class="md:w-1/3 md:min-w-96  flex justify-center  aspect-auto relative ">
         <img class="md:w-[70%]  h-full object-cover" :src="product?.image" alt="" srcset="">
@@ -11,7 +16,7 @@
 
            <div class="flex items-center gap-4">
             <div class="flex items-center gap-1">
-                 <NestDynamicStars :rate="product?.rating.rate"/>
+                 <NestDynamicStars :rate="product.rating.rate"/>
             <p>({{ product?.rating.rate }})</p>
             </div>
             <span class="flex underline break-keep ">
@@ -29,14 +34,30 @@
         
     </div>
   </div>
+    </div>
+  </div>
 </template>
 
 <script setup>
-import { useFavStore } from '~/stores/favourites';
-
   const {id} = useRoute().params; 
-  const {data:product , error} = await useApi(`https://fakestoreapi.com/products/${id}`); 
-  const favStore = useFavStore()
+  
+  const isLoading = ref(false)
+  const product = ref(''); 
+  const init = async()=>{
+    isLoading.value = true;
+  const {data , error} = await useApi(`https://fakestoreapi.com/products/${id}`); 
+    if(data) {isLoading.value = false ; product.value = data.value}
+    else {
+      isLoading.value = false ; 
+      console.log(error)
+    }
+  }
+
+  onMounted(()=>{
+      init(); 
+  })
+ 
+  
 
 </script>
 
