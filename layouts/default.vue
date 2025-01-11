@@ -5,7 +5,7 @@
             <h1 class="w-1/3 text-left">Menu</h1>
             <h1 class="w-1/3 text-center text-5xl  tracking-widest ">Imazine</h1>
             <ul class=" w-1/3  flex gap-8 justify-end ">
-                <li><NuxtLink to="/">Home</NuxtLink></li>
+                <!-- <li><NuxtLink to="/">Home</NuxtLink></li> -->
                 <li><NuxtLink to="/products">Products</NuxtLink></li>
                 <li><NuxtLink to="/favourites">Favourites {{ favStore.fav.length }}</NuxtLink></li>
                 <li><NuxtLink to="/cart">Cart {{ cartStore.cart.length }}  </NuxtLink></li>
@@ -13,7 +13,7 @@
         </nav>
      </header>
 
-     <div class="">
+     <div class="translate-y-20">
         <slot></slot>
      </div>
     </div>

@@ -1,5 +1,5 @@
 <template>
-  <div class="translate-y-24">
+  <div class="translate-y-4">
   <div class="flex max-md:flex-col  justify-center items-center gap-10 py-4  ">
        <div class="md:w-1/3 md:min-w-96  flex justify-center  aspect-auto relative ">
         <img class="md:w-[70%]  h-full object-cover" :src="product.image" alt="" srcset="">

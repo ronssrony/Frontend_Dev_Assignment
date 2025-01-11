@@ -11,15 +11,29 @@
           class="text-black/60"
         ></Icon>
       </button>
-      <button @click="favStore.addToFav(product)"><Icon name="ri:heart-line" class="text-black/60"></Icon></button>
+      <button @click="toggleFavorite"><Icon :name="isFav?`ic:baseline-favorite`:'ic:baseline-favorite-border'" class="text-slate-700"></Icon></button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { useFavStore } from '~/stores/favourites';
+const isFav = ref(false)
 const {product} = defineProps(['product'])
 const favStore = useFavStore()
+const favoriteOrNot = favStore.fav.find((item)=> item.id===product.id)
+if(favoriteOrNot)
+{isFav.value=true}
+const toggleFavorite = () => {
+  isFav.value = !isFav.value;
+
+  if (isFav.value) {
+    favStore.addToFav(product);
+  } else {
+    favStore.removeFromFav(product.id);
+  }
+};
+
 </script>
  
 <style></style>
