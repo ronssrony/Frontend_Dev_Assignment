@@ -7,6 +7,7 @@ export const useCartStore = defineStore("cart", {
   actions: {
     addToCart(product) {
       const existingItem = this.cart.find((item) => item.id === product.id);
+      product.volume = 1;
       if (!existingItem) {
         this.cart.push(product);
         this.saveCartToLocalStorage();
@@ -26,8 +27,19 @@ export const useCartStore = defineStore("cart", {
     saveCartToLocalStorage() {
       localStorage.setItem("cart", JSON.stringify(this.cart));
     },
-    loadCartFromLocalStorage() {
-      this.cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    volumeIncreament(product) {
+      const existingItem = this.cart.find((item) => item.id === product.id);
+      if (existingItem && product.volume<10) {
+        product.volume++;
+        this.saveCartToLocalStorage();
+      }
+    },
+    volumeDecreament(product) {
+      const existingItem = this.cart.find((item) => item.id === product.id);
+      if (existingItem && product.volume>1) {
+        product.volume--;
+        this.saveCartToLocalStorage();
+      }
     },
   },
 });

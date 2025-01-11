@@ -24,6 +24,7 @@ const favStore = useFavStore()
 const favoriteOrNot = favStore.fav.find((item)=> item.id===product.id)
 if(favoriteOrNot)
 {isFav.value=true}
+
 const toggleFavorite = () => {
   isFav.value = !isFav.value;
 
