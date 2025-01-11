@@ -1,5 +1,5 @@
 <template>
-     <div class="slider ">
+     <div class="slider  ">
         <div class="picture h-screen relative">
      <img class="object-cover w-full h-full " src="/assets/images/third.jpg" alt="" srcset="">
     </div>
