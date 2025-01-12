@@ -13,7 +13,7 @@
       
         <div v-for="item in cartStore.cart">
               
-              <CartProductCard :product="item" @modifyVolume="modifyVolume"/>
+              <CartProductCard :product="item" />
         </div>
 
       </div>
@@ -102,6 +102,10 @@ import { useCartStore } from '~/stores/cart';
  const togglePromo = ()=>{
       promoCode.value=!promoCode.value
  }
+ 
+ watch(cartStore.cart , ()=>{
+     modifyVolume(); 
+ })
 
  function modifyVolume(){
   originalPrice.value = 0 ;

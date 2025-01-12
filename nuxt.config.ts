@@ -4,4 +4,9 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   ssr: false,
   modules: ["@nuxtjs/tailwindcss", "@nuxt/icon", "@nuxt/fonts"],
+  app:{
+    head:{
+      title:"Imazine"
+    }
+  }
 });

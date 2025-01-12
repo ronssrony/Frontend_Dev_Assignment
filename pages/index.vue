@@ -20,6 +20,10 @@
     onUnmounted(()=>{
         stopSlider() ;
     })
+    useHead({
+        title:'Imazine' ,
+    })
+    
 </script>
 
 <style  scoped>
