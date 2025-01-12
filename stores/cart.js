@@ -12,8 +12,9 @@ export const useCartStore = defineStore("cart", {
         this.cart.push(product);
         this.saveCartToLocalStorage();
         console.log("Product added to cart!");
+        return true
       } else {
-        console.log("Product already exists in the cart!");
+        return false ;
       }
     },
     removeFromCart(productId) {

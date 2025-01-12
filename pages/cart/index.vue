@@ -44,16 +44,26 @@
           <span>Total</span>
           <span>${{Math.round(total)}}</span>
         </div>
+         <div :class="isDiscount?`flex justify-between text-sm mt-4`:'hidden'">
+          <span>Discount</span>
+          <span>${{Math.round(discountAmount)}}</span>
+        </div>
+        <div  @click="togglePromo"  class="text-sm text-orange-500 cursor-pointer">
+          <p>Use Promo Code</p>
+        </div>
+           <form @submit.prevent="submitPromo" :class="promoCode?`bg-gray-100 p-4 mt-6 rounded-md`:'hidden'">
+        <label for="voucher" class="block text-sm text-gray-600 mb-2">Enter Promo "nuxt10" to get 10% discount</label>
+        <input type="text" id="voucher" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter code" v-model="promoInput">
+  
+        <button class="w-full bg-blue-600 text-white py-2 mt-4 rounded-md font-semibold hover:bg-blue-700 transition"> Apply Code </button>
+           </form>
       </div>
-      <button class="bg-blue-600 text-white w-full py-2 mt-6 rounded-md font-semibold hover:bg-blue-700 transition"> Proceed to Checkout </button>
+      <button @click="checkoutFunc" :class="`${checkoutProcessing?'animate-pulse bg-green-400':'animate-none bg-blue-600 hover:bg-blue-700 '} text-white w-full py-2 mt-6 rounded-md font-semibold  transition`"> {{ checkoutProcessing?'Processing':'Proceed to Checkout' }} </button>
       <div class="text-center mt-4">
         <a href="/" class="text-blue-600 hover:underline"> or Continue Shopping </a>
       </div>
-      <div class="bg-gray-100 p-4 mt-6 rounded-md">
-        <label for="voucher" class="block text-sm text-gray-600 mb-2">Do you have a voucher or gift card?</label>
-        <input type="text" id="voucher" class="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Enter code">
-        <button class="w-full bg-blue-600 text-white py-2 mt-4 rounded-md font-semibold hover:bg-blue-700 transition"> Apply Code </button>
-      </div>
+     
+     
     </div>
   </div>
 </div>
@@ -64,6 +74,11 @@
 <script  setup>
 import CartProductCard from '~/components/cartProductCard.vue';
 import { useCartStore } from '~/stores/cart';
+ const promoCode = ref(false)
+ const isDiscount = ref(false)
+ const discountAmount = ref('')
+ const promoInput = ref(''); 
+ const checkoutProcessing = ref(false); 
  const originalPrice = ref(0) ;
  const savings = ref(0) ;
  const storePickup =ref(50) ; 
@@ -84,6 +99,10 @@ import { useCartStore } from '~/stores/cart';
    initialState()
  })
 
+ const togglePromo = ()=>{
+      promoCode.value=!promoCode.value
+ }
+
  function modifyVolume(){
   originalPrice.value = 0 ;
      cartStore.cart.forEach(element => {
@@ -92,6 +111,20 @@ import { useCartStore } from '~/stores/cart';
    savings.value = originalPrice.value*(5/100); 
       tax.value = originalPrice.value*(10/100)
       total.value = originalPrice.value -savings.value+tax.value+storePickup.value ;
+}
+
+const promoCodesArray = ['nuxt10','rony10','pappu10','rayhan10','dihan10','shafa10','ripa10','debesh10'] ;
+const submitPromo = ()=>{
+      if(promoCodesArray.includes(promoInput.value)){
+           promoCode.value=!promoCode.value
+           isDiscount.value = !isDiscount.value ;
+           discountAmount.value = total.value*(10/100); 
+           total.value =total.value-discountAmount.value; 
+      }
+}
+
+const checkoutFunc = ()=>{
+     checkoutProcessing.value = !checkoutProcessing.value
 }
 
 </script>

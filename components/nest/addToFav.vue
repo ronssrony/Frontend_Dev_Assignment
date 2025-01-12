@@ -6,6 +6,7 @@
 
 <script  setup>
 import { useFavStore } from '~/stores/favourites';
+
   const favStore = useFavStore()
   const {product} = defineProps(['product']); 
   const isFav = ref(false)

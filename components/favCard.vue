@@ -40,9 +40,12 @@ import { useFavStore } from '~/stores/favourites';
 
 const { product } = defineProps(["product"]);
 const  favStore = useFavStore() ;
+
 const deleteFromFav = ()=>{
       favStore.removeFromFav(product.id); 
-}
+} 
+
+
 </script>
 
 <style>
